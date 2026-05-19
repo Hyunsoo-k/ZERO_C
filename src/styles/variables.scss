@@ -1,0 +1,73 @@
+/*
+ * Breakpoints & Media Queries
+ */
+$breakpoint-mobile: 48rem;
+$breakpoint-tablet: 64rem;
+$breakpoint-desktop: 75rem;
+
+@mixin tablet {
+  @media (min-width: #{$breakpoint-mobile}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$breakpoint-tablet}) {
+    @content;
+  }
+}
+
+@mixin wide {
+  @media (min-width: #{$breakpoint-desktop}) {
+    @content;
+  }
+}
+
+/*
+ * Screen Padding
+ */
+$sceen-padding-mobile: 1rem;
+$screen-padding-tablet: 1.25rem;
+
+
+/*
+ * Header Height
+ */
+$header-height-mobile: 3.5rem;
+$header-height-tablet: 4.5rem;
+
+
+/*
+ * Z-Index
+ */
+$backdrop-zindex: 1000;
+$drawer-zindex: 1010;
+
+/*
+ * Background Color
+ */
+$bg-base: #F6F9F7;
+$bg-logo: #25935F;
+$bg-drawer: #0E1B16;
+$bg-on-drawer-hover: rgb(27, 45, 39, 0.5);
+$bg-on-drawer-click: #1B2D27;
+
+/*
+ * Border Radius
+ */
+$radius: 12px;
+
+/*
+ * Border Color
+ */
+$border-base: #DFE7E2;
+$border-drawer: #1F2E29;
+
+/*
+ * Font Color
+ */
+$text-base: #2C2C2C;
+$text-subtle: #677E77;
+$text-inverse: #FFF;
+$text-on-drawer-hover: rgba(211, 222, 215, 0.6);
+$text-logo: #2EB877;
