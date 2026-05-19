@@ -1,0 +1,39 @@
+@use "@/styles/variables" as *;
+
+.header {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  width: 100dvw;
+  height: $header-height-mobile;
+  padding: 0 $sceen-padding-mobile;
+  border-bottom: 1px solid $border-base;
+
+  @include tablet {
+    height: $header-height-tablet;
+  }
+
+  @include desktop {
+    grid-area: 1 / 2 / 2 / 3;
+  }
+
+  .burger {
+    margin-right: 0.5rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+
+    @include desktop {
+      display: none;
+    }
+  }
+
+  .brand {
+    font-size: 1.6rem;
+    font-weight: 500;
+    cursor: pointer;
+
+    @include desktop {
+      display: none;
+    }
+  }
+}
