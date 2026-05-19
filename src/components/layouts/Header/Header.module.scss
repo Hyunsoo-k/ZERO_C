@@ -14,21 +14,30 @@
   }
 
   @include desktop {
+    position: sticky; 
+    top: 0;
+    left: 0;
+    width: 100%;
     grid-area: 1 / 2 / 2 / 3;
   }
 
-  .burger {
-    margin-right: 0.5rem;
-    font-size: 1.6rem;
-    cursor: pointer;
+  .navDrawerButton {
+    display: flex;
+    align-items: center;
 
-    @include desktop {
-      display: none;
+    .burger {
+      margin-right: 0.5rem;
+      font-size: 1.3rem;
+      cursor: pointer;
+
+      @include desktop {
+        display: none;
+      }
     }
   }
 
   .brand {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     font-weight: 500;
     cursor: pointer;
 
