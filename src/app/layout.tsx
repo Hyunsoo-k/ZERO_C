@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 
+import { Header } from "@/components/layouts/Header/Header";
+import { NavDrawer } from "@/components/layouts/NavDrawer/NavDrawer";
+
 import localFont from 'next/font/local'
 import "./globals.scss";
-import { Header } from "@/components/layouts/Header/Header";
+import { Backdrop } from "@/components/ui/Backdrop/Backdrop";
 
 const pretendard = localFont({
   src: [
@@ -30,6 +33,8 @@ export default function RootLayout({
     <html lang="ko" className={`${pretendard.variable}`}>
       <body>
         <Header />
+        <NavDrawer />
+        <Backdrop />
         {children}
       </body>
     </html>
