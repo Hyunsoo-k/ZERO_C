@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 import type { Company } from "@/types/company";
-import { companies } from "@/lib/mockDatas";
+import { companies } from "@/lib/mockData";
 
 const INITIAL_COMPANY = companies[0]; 
 
