@@ -11,13 +11,11 @@ type NavDrawerStore = {
 export const useNavDrawerStore = create<NavDrawerStore>((set) => ({
   isOpen: false,
   open: () => {
-    const { open: openBackdrop } = useBackdropStore.getState();
-    openBackdrop();
+    useBackdropStore.getState().open(() => set({ isOpen: false }));
     set({ isOpen: true });
   },
   close: () => {
-    const { close: closeBackdrop } = useBackdropStore.getState();
-    closeBackdrop();
+    useBackdropStore.getState().close();
     set({ isOpen: false });
   }
 }));
