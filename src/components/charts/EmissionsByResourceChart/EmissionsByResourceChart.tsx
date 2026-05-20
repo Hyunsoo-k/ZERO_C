@@ -49,7 +49,7 @@ export const EmissionsByResourceChart = ({ emissions }: Props) => {
             <XAxis type="number" tick={{ fontSize: 11 }} stroke="hsl(160,10%,70%)" />
             <YAxis type="category" dataKey="source" tick={{ fontSize: 11 }} stroke="hsl(160,10%,70%)" width={40} />
             <Tooltip
-              formatter={(value: number) => [`${value} tCO₂e`, "배출량"]}
+              formatter={(value: unknown) => [`${value} tCO₂e`, "배출량"]}
             />
             <Bar dataKey="emissions" radius={[0, 4, 4, 0]}>
               {chartData.map((entry) => (
@@ -63,6 +63,5 @@ export const EmissionsByResourceChart = ({ emissions }: Props) => {
         </ResponsiveContainer>
       </div>
     </article>
-
   );
 };
