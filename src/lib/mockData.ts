@@ -1,4 +1,5 @@
-import { Company, Post } from "./types";
+import type { Company } from "@/types/company";
+import type { Post } from "@/types/post";
 
 export const countries: string[] = ["US", "DE", "JP", "CH", "IN"];
 
