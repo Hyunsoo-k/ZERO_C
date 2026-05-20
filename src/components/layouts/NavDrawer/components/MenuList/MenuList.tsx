@@ -18,7 +18,7 @@ export const MenuList = () => {
       {MENUS.map((item) => (
         <li key={item.name} className={styles.item}>
           <Link
-            href={`/${item.category}`}
+            href="/"
             onClick={() => handleItemClick(item.category)}
             className={styles.option}
           >
