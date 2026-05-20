@@ -6,9 +6,8 @@ import { createPortal } from "react-dom";
 import { Company } from "@/types/company";
 import { groupCompanyCalendar } from "@/utils/groupCompanyCalendar";
 import { useSearchModalStore } from "@/store/useSearchModal";
-import { useCompanyDateStore } from "@/store/useCompanyDateStore";
-import { useSelectedCompanyStore } from "@/store/useSelectedCompanyStore";
 import { useGetCompanies } from "@/hooks/useGetCompanies";
+import { useGetCompany } from "@/hooks/useGetCompany";
 import { Dropdown } from "@/components/ui/Dropdown/Dropdown";
 import { SubmitButton } from "@/components/ui/SubmitButton/SubmitButton";
 
@@ -17,16 +16,17 @@ import styles from "./SearchModal.module.scss";
 export const SearchModal = () => {
   const { isOpen, close } = useSearchModalStore();
   const { data: companies } = useGetCompanies();
-  const { setSelectedCompany } = useSelectedCompanyStore();
-  const { setCompanyDate } = useCompanyDateStore();
-  const [selectedName, setSelectedName] = useState<string | null>(null);
-  const [selectedYear, setSelectedYear] = useState<string | null>(null);
-  const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
+  const [id, setId] = useState<string | null>(null);
+  const [name, setName] = useState<string | null>(null);
+  const [year, setYear] = useState<string | null>(null);
+  const [month, setMonth] = useState<string | null>(null);
+
+  useGetCompany(id);
 
   const companyNames = companies?.map((company: Company) => company.name) || [];
 
-  const selectedCompanyData = selectedName 
-    ? companies?.find((company: Company) => company.name === selectedName)
+  const selectedCompanyData = name 
+    ? companies?.find((company: Company) => company.name === name)
     : null;
 
   const compayCalender = selectedCompanyData 
@@ -35,16 +35,15 @@ export const SearchModal = () => {
 
   const years = compayCalender.map((calendar: { year: string, months: string[]}) => calendar.year);
   const months = compayCalender.find((calendar: { year: string, months: string[] }) => 
-    calendar.year === selectedYear
+    calendar.year === year
   )?.months ?? [];
 
   const handleSubmit = () => {
-  close();
-  setSelectedCompany(companies?.find((company: Company) => company.name === selectedName) ?? null);
-  setCompanyDate({ name: selectedName, year: selectedYear, month: selectedMonth });
-};
+    close();
+    setId(companies.find((company: Company) => company.name === name).id);
+  };
 
-  if(!isOpen) {
+  if(!isOpen || !companies) {
     return null;
   }
 
@@ -59,24 +58,24 @@ export const SearchModal = () => {
           data={{ target: "name", list: companyNames }}
           disabled={!companies}
           onSelect={(value) => {
-            setSelectedName(value);
-            setSelectedYear(null);
-            setSelectedMonth(null);
+            setName(value);
+            setYear(null);
+            setMonth(null);
           }}
         />
         <Dropdown
           data={{ target: "year", list: years }}
-          disabled={!selectedName}
-          onSelect={setSelectedYear}
+          disabled={!name}
+          onSelect={setYear}
         />
         <Dropdown
           data={{ target: "month", list: months }}
-          disabled={!selectedYear}
-          onSelect={setSelectedMonth}
+          disabled={!year}
+          onSelect={setMonth}
         />
       </div>
       <footer className={styles.footer}>
-        <SubmitButton onClick={handleSubmit} disabled={!selectedMonth} />
+        <SubmitButton onClick={handleSubmit} disabled={!month} />
       </footer>
     </div>,
     document.body
