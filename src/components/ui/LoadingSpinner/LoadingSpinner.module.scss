@@ -1,0 +1,22 @@
+@use "@/styles/variables" as *;
+
+.loadingSpinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100dvh - #{$header-height-mobile});
+  background-color: $bg-on-base;
+
+  @include tablet {
+    height: calc(100dvh - #{$header-height-tablet});
+  }
+
+  @include desktop {
+    height: calc(100dvh - #{$header-height-desktop});
+  }
+
+  .spinner {
+
+  }
+}
