@@ -1,0 +1,61 @@
+@use "@/styles/variables" as *;
+
+.trendCard {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 2rem;
+  padding: $screen-padding-mobile;
+  border: 1px solid $border-base;
+  border-radius: $radius;
+  background-color: $bg-on-base;
+
+  @include tablet {
+    padding: $screen-padding-tablet;
+  }
+
+  @include desktop {
+    padding: $screen-padding-desktop;
+  }
+
+  &.evaluation {
+    grid-area: 2 / 1 / 2 / 3;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    @include tablet {
+      gap: 1rem;
+    }
+
+    .title {
+      font-size: 1rem;
+      font-weight: 500;
+
+      @include tablet {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .value {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+
+    .unit {
+      margin-left: 0.4rem;
+      font-size: 0.8rem;
+      color: $text-subtle;
+    }
+
+    .icon {
+      margin-left: auto;
+      font-size: 2rem;
+    }
+  }
+}
