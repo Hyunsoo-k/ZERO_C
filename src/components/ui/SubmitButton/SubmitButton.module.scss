@@ -1,0 +1,10 @@
+@use "@/styles/variables" as *;
+
+.submitButton {
+  width: 100%;
+  padding: $screen-padding-mobile;
+  border-radius: $radius;
+  background-color: $bg-brand;
+  color: $text-inverse;
+  cursor: pointer;
+}
