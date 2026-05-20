@@ -1,5 +1,6 @@
 ## ZERO_C
 탄소배출발자국 대시보드
+
 <img width="1902" height="868" alt="image" src="https://github.com/user-attachments/assets/61104bda-87f6-422d-9164-47f2bd8fa312" />
 
 ## 개발 인원
