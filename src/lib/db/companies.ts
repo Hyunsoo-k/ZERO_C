@@ -1,6 +1,6 @@
 import { Company } from "@/types/company";
 
-const companies: Company[] = [
+export const companies: Company[] = [
   {
     id: "c1",
     name: "Globex",
@@ -382,5 +382,3 @@ const companies: Company[] = [
     ]
   },
 ];
-
-export let _companies = [...companies];

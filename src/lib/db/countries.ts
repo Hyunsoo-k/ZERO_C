@@ -1,4 +1,4 @@
-const countries = [
+export const countries = [
   "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AQ", "AR", 
   "AS", "AT", "AU", "AW", "AX", "AZ", "BA", "BB", "BD", "BE", 
   "BF", "BG", "BH", "BI", "BJ", "BL", "BM", "BN", "BO", "BQ", 
@@ -25,5 +25,3 @@ const countries = [
   "UM", "US", "UY", "UZ", "VA", "VC", "VE", "VG", "VI", "VU", 
   "WF", "WS", "YE", "YT", "ZA", "ZM", "ZW"
 ];
-
-export let _countries = [...countries];
