@@ -10,10 +10,10 @@ import {
   YAxis
 } from "recharts";
 
-import type { GhgEmission } from "@/lib/types";
-import { groupEmissionsByYear } from "@/utils/groupEmissionsByYear";
+import { GhgEmission } from "@/types/ghgEmission";
+import { processMonthlyEmissions } from "@/utils/processMonthlyEmissions";
 
-import styles from "./TotalEmissionsChart.module.scss";
+import styles from "./MonthlyTotalEmissionsChart.module.scss";
 
 const GHG_EMISSION_COLOR = "hsl(197,55%,42%)";
 
@@ -21,20 +21,20 @@ type Props = {
   emissions: GhgEmission[];
 };
 
-export const TotalEmissionsChart = ({ emissions }: Props) => {
+export const MonthlyTotalEmissionsChart = ({ emissions }: Props) => {
   if (!emissions) {
     return null;
   }
 
-  const groupedEmissions = groupEmissionsByYear(emissions);
+  const groupedEmissions = processMonthlyEmissions(emissions);
 
-  const chartData = groupedEmissions[0].months.map((month) => ({
-    month: month.month,
-    totalEmissions: month.totalEmissions,
+  const chartData = groupedEmissions.map((item) => ({
+    month: item.month,
+    totalEmissions: item.totalEmissions,
   }));
 
   return (
-    <article className={styles.totalEmissionsChart}>
+    <article className={styles.monthlyTotalEmissionsChart}>
       <header className={styles.header}>
         <h3 className={styles.title}>월별 총 탄소 배출 추이</h3>
         <p className={styles.description}>2025년 전체 (tCO₂e)</p>

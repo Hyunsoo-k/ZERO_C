@@ -11,10 +11,10 @@ import {
   YAxis,
 } from "recharts";
 
-import type { GhgEmission } from "@/lib/types";
-import { groupEmissionsBySource } from "@/utils/groupEmissionsByResource";
+import type { GhgEmission } from "@/types/ghgEmission";
+import { processMonthlyEmissionsBySource } from "@/utils/processMonthlyEmissionsBySource";
 
-import styles from "./EmissionsByResourceChart.module.scss";
+import styles from "./MonthlyEmissionsBySourceChart.module.scss";
 
 const SOURCE_COLORS: Record<string, string> = {
   lpg: "#25935F",
@@ -28,14 +28,14 @@ type Props = {
   emissions: GhgEmission[];
 };
 
-export const EmissionsByResourceChart = ({ emissions }: Props) => {
-  const groupedEmissions = groupEmissionsBySource(emissions);
-  const chartData = groupedEmissions[0].sources;
+export const MonthlyEmissionsBySourceChart = ({ emissions }: Props) => {
+  const monthlyEmissionsBySource = processMonthlyEmissionsBySource(emissions);
+  const chartData = monthlyEmissionsBySource[0].sources;
 
   return (
-    <article className={styles.sourceEmissionsChart}>
+    <article data-testid="monthly-emissions-chart" className={styles.monthlyEmissionsBySourceChart}>
       <header className={styles.header}>
-        <h3 className={styles.title}>자원별 총 탄소 배출량</h3>
+        <h3 className={styles.title}>자원별 월 총 탄소 배출량</h3>
         <p className={styles.description}>2025년 전체 (tCO₂e)</p>
       </header>
       <div className={styles.chartWrapper}>
