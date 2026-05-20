@@ -1,0 +1,48 @@
+@use "@/styles/variables" as *;
+
+.sourceEmissionsChart {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: $screen-padding-mobile;
+  border: 1px solid $border-base;
+  border-radius: $radius;
+  background-color: $bg-on-base;
+
+  @include tablet {
+    padding: $screen-padding-tablet;
+  }
+
+  @include desktop {
+    padding: $screen-padding-desktop;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    @include tablet {
+      gap: 1rem;
+    }
+
+    .title {
+      font-size: 1rem;
+      font-weight: 500;
+
+      @include tablet {
+        font-size: 1.2rem;
+      }
+    }
+
+    .description {
+      font-size: 0.8rem;
+      color: $text-subtle;
+    }
+  }
+
+  .chartWrapper {
+    width: 100%;
+    height: 12rem;
+  }
+}
