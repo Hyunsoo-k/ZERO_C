@@ -41,4 +41,4 @@ npm run dev
 
 ## 추가하고 싶은 기능들
 - 차트, 기타 레이아웃 추가
-- tanstack-query를 이용한 데이터 관리 고도화와 mutation후의 낙관적 업데이트 등
+- tanstack-query를 이용한 사용자 상호작용, 데이터 관리 고도화, mutation후의 낙관적 업데이트 등
