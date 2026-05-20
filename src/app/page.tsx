@@ -23,12 +23,10 @@ export default async function Home() {
   await Promise.all([companiesQuery, companyQuery]);
 
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <HydrationBoundary state={dehydrate(queryClient)}>
-          <HomeLayout />
-        </HydrationBoundary>
-      </main>
-    </div>
+    <main className={styles.main}>
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <HomeLayout />
+      </HydrationBoundary>
+    </main>
   );
 }
