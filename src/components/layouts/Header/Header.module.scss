@@ -1,0 +1,49 @@
+@use "@/styles/variables" as *;
+
+.header {
+  position: sticky;
+  z-index: $header-zindex;
+  top: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: $header-height-mobile;
+  padding: 0 $screen-padding-mobile;
+  border-bottom: 1px solid $border-base;
+  background-color: $bg-base;
+
+  @include tablet {
+    height: $header-height-tablet;
+    padding: 0 $screen-padding-tablet;
+  }
+
+  @include desktop {
+    width: 100%;
+    grid-area: 1 / 2 / 2 / 3;
+  }
+
+  .navDrawerButton {
+    display: flex;
+    align-items: center;
+
+    .burger {
+      margin-right: 0.5rem;
+      font-size: 1.3rem;
+      cursor: pointer;
+
+      @include desktop {
+        display: none;
+      }
+    }
+  }
+
+  .brand {
+    font-size: 1.3rem;
+    font-weight: 500;
+    cursor: pointer;
+
+    @include desktop {
+      display: none;
+    }
+  }
+}

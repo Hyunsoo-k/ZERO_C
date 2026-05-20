@@ -1,0 +1,80 @@
+@use "@/styles/variables" as *;
+
+.homeLayout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .header {
+    display: grid;
+    grid-template: auto auto / 1fr auto;
+    gap: 1rem;
+    padding: $screen-padding-mobile *2 $screen-padding-mobile;
+
+    @include tablet {
+      gap: 1.5rem;
+      padding: $screen-padding-tablet
+    }
+    
+    @include desktop {
+      padding: $screen-padding-desktop
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: 500;
+
+      @include tablet {
+        font-size: 1.6rem;
+      }
+
+      .name {
+        display: block;
+        margin-left: 0.5rem;
+        font-size: 0.8rem;
+        color: $text-subtle;
+
+        @include tablet {
+          position: relative;
+          top: 3px;
+        }
+      }
+    }
+
+    .description {
+      font-size: 0.8rem;
+      color: $text-subtle;
+
+      @include tablet {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .cardSecion {
+    display: grid;
+    grid-template: 1fr 1fr / auto auto;
+    gap: 1rem;
+    padding: $screen-padding-mobile;
+
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .chartSection {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: $screen-padding-mobile;
+    
+    @include tablet {
+      display: grid;
+      grid-template: auto auto / 1fr 1fr;
+      gap: 1.5rem;
+    }
+  }
+}

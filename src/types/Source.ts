@@ -1,0 +1,1 @@
+export type Source = "lpg" | "gasoline" | "electricity" | "diesel" | "co2" | "coal";
