@@ -1,13 +1,26 @@
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 
-import { fetchCompanies } from "@/lib/api";
+import { getCompanies } from "@/lib/api/getCompanies";
+import { getCompany } from "@/lib/api/getCompany";
+import { queryKeys } from "@/queryKeys/queryKeys";
 import { HomeLayout } from "@/components/layouts/HomeLayout/HomeLayout";
 
 import styles from "./page.module.scss";
 
 export default async function Home() {
   const queryClient = new QueryClient();
-  queryClient.prefetchQuery({ queryKey: ["companies"], queryFn: fetchCompanies });
+
+  const companiesQuery = queryClient.prefetchQuery({ 
+    queryKey: queryKeys.companies, 
+    queryFn: getCompanies 
+  });
+
+  const companyQuery = queryClient.prefetchQuery({ 
+    queryKey: queryKeys.company("c1"), 
+    queryFn: () => getCompany("c1")
+  });
+
+  await Promise.all([companiesQuery, companyQuery]);
 
   return (
     <div className={styles.page}>
