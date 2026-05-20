@@ -1,1 +1,1 @@
-export type Category = "dashboard";
+export type Category = "dashboard" | "posts";
