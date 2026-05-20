@@ -1,13 +1,21 @@
 import { create } from "zustand";
 
-type BackdropStroe = {
+type BackdropStore = {
   isOpen: boolean;
-  open: () => void;
+  closeCallback: () => void;
+  open: (closeCallback: () => void) => void;
   close: () => void;
 };
 
-export const useBackdropStore = create<BackdropStroe>((set) => ({
+export const useBackdropStore = create<BackdropStore>((set, get) => ({
   isOpen: false,
-  open: () => set({ isOpen: true }),
-  close: () => set({ isOpen: false })
+  closeCallback: () => {},
+  open: (closeCallback: () => void) => {
+    set({ isOpen: true, closeCallback });
+  },
+  close: () => {
+    const { closeCallback } = get();
+    closeCallback();
+    set({ isOpen: false, closeCallback: () => {} });
+  }
 }));
