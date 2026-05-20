@@ -1,0 +1,46 @@
+@use "@/styles/variables" as *;
+
+.searchModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: $search-modal-zindex;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 20rem;
+  padding: $screen-padding-mobile * 2 $screen-padding-mobile;
+  border: 1px solid $border-base;
+  border-radius: $radius;
+  background-color: $bg-on-base;
+
+  @include tablet {
+    max-width: 35rem;
+  }
+
+  .header {
+    text-align: center;
+    
+    .title {
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    .description {
+      font-size: 0.8rem;
+      color: $text-subtle;
+    }
+  }
+
+  .body {
+    display: grid;
+    grid-template: auto auto / 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .footer {
+    margin-top: 1.5rem;
+  }
+}
