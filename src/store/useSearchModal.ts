@@ -2,13 +2,13 @@ import { create } from "zustand";
 
 import { useBackdropStore } from "./useBackdropStore";
 
-type NavDrawerStore = {
+type SearchModalStore = {
   isOpen: boolean;
   open: () => void;
   close: () => void;
 };
 
-export const useNavDrawerStore = create<NavDrawerStore>((set) => ({
+export const useSearchModalStore = create<SearchModalStore>((set) => ({
   isOpen: false,
   open: () => {
     useBackdropStore.getState().open(() => set({ isOpen: false }));

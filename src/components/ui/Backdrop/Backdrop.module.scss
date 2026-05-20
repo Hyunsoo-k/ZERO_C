@@ -7,15 +7,13 @@
   width: 100dvw;
   height: 100dvh;
   z-index: $backdrop-zindex;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.3);
 
   @include tablet {
 
   }
 
   @include desktop {
-    top: $header-height-desktop;
-    display: none;
-    height: calc(100dvh - #{$header-height-desktop});
+
   }
 }

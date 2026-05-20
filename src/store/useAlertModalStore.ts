@@ -2,13 +2,13 @@ import { create } from "zustand";
 
 import { useBackdropStore } from "./useBackdropStore";
 
-type NavDrawerStore = {
+type AlertModalStore = {
   isOpen: boolean;
   open: () => void;
   close: () => void;
 };
 
-export const useNavDrawerStore = create<NavDrawerStore>((set) => ({
+export const AlertModalStore = create<AlertModalStore>((set) => ({
   isOpen: false,
   open: () => {
     useBackdropStore.getState().open(() => set({ isOpen: false }));

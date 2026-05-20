@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 
 import { Header } from "@/components/layouts/Header/Header";
 import { NavDrawer } from "@/components/layouts/NavDrawer/NavDrawer";
+import { Backdrop } from "@/components/ui/Backdrop/Backdrop";
+import { SearchModal } from "@/components/modals/SearchModal/SearchModal";
+import { QueryProvider } from "@/components/QueryProvider/QueryProvider";
 
 import localFont from 'next/font/local'
 import "./globals.scss";
-import { Backdrop } from "@/components/ui/Backdrop/Backdrop";
 
 const pretendard = localFont({
   src: [
@@ -32,10 +34,13 @@ export default function RootLayout({
   return (
     <html lang="ko" className={`${pretendard.variable}`}>
       <body>
-        <Header />
-        <NavDrawer />
-        <Backdrop />
-        {children}
+        <QueryProvider>
+          <Header />
+          <NavDrawer />
+          <Backdrop />
+          <SearchModal />
+          {children}
+        </QueryProvider>
       </body>
     </html>
   );
