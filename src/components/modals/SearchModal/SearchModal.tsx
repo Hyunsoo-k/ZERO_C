@@ -12,35 +12,39 @@ import { Dropdown } from "@/components/ui/Dropdown/Dropdown";
 import { SubmitButton } from "@/components/ui/SubmitButton/SubmitButton";
 
 import styles from "./SearchModal.module.scss";
+import { useDateStore } from "@/store/useDateStore";
+import { useIdStore } from "@/store/useId";
 
 export const SearchModal = () => {
   const { isOpen, close } = useSearchModalStore();
+  const { setDate } = useDateStore();
   const { data: companies } = useGetCompanies();
-  const [id, setId] = useState<string | null>(null);
+  const { id, setId } = useIdStore();
   const [name, setName] = useState<string | null>(null);
   const [year, setYear] = useState<string | null>(null);
   const [month, setMonth] = useState<string | null>(null);
+  const company = useGetCompany(id);
 
   useGetCompany(id);
 
-  const companyNames = companies?.map((company: Company) => company.name) || [];
-
-  const selectedCompanyData = name 
+  const names = companies?.map((company: Company) => company.name) || [];
+  const date = name
     ? companies?.find((company: Company) => company.name === name)
     : null;
-
-  const compayCalender = selectedCompanyData 
-    ? groupCompanyCalendar(selectedCompanyData)
+  const calendar = date 
+    ? groupCompanyCalendar(date)
     : []
-
-  const years = compayCalender.map((calendar: { year: string, months: string[]}) => calendar.year);
-  const months = compayCalender.find((calendar: { year: string, months: string[] }) => 
+  const years = calendar.map((calendar: { year: string, months: string[]}) => calendar.year);
+  const months = calendar.find((calendar: { year: string, months: string[] }) => 
     calendar.year === year
   )?.months ?? [];
 
   const handleSubmit = () => {
-    close();
-    setId(companies.find((company: Company) => company.name === name).id);
+    if (year && month) {
+      setDate({ year, month });
+      setId(companies?.find((company: Company) => company.name === name).id ?? null);
+      close();
+    }
   };
 
   if(!isOpen || !companies) {
@@ -55,7 +59,7 @@ export const SearchModal = () => {
       </header>
       <div className={styles.body}>
         <Dropdown
-          data={{ target: "name", list: companyNames }}
+          data={{ target: "name", list: names }}
           disabled={!companies}
           onSelect={(value) => {
             setName(value);
