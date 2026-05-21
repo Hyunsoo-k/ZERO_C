@@ -1,0 +1,43 @@
+@use "@/styles/variables" as *;
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.2rem;
+  padding: 1rem;
+  background-color: $bg-on-base;
+  border: 1px solid $border-base;
+  border-radius: $radius;
+  width: 100%;
+  max-width: 20rem;
+
+  @include tablet {
+    gap: 0.6rem;
+  }
+
+  .cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    border: 1px solid transparent;
+    border-radius: $radius;
+    font-size: 0.7rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+
+    @include tablet {
+      font-size: 0.9rem;
+    }
+
+    &.hasData {
+      color: $text-logo;
+      font-weight: 500;
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+  }
+}
