@@ -6,6 +6,7 @@ import { posts } from "../db/posts";
 
 export const createOrUpdatePost = async( post: Omit<Post, "id"> & { id?: string }) => {
   await delay(jitter());
+  console.log("create")
 
   if (maybeFail()) {
     throw new Error("Save failed");

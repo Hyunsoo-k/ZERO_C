@@ -1,13 +1,14 @@
 @use "@/styles/variables" as *;
 
-.searchModal {
+.searchCompanyModal {
   position: fixed;
   top: 50%;
   left: 50%;
   z-index: $search-modal-zindex;
   transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
   width: 80%;
-  height: 20rem;
   padding: $screen-padding-mobile * 2 $screen-padding-mobile;
   border: 1px solid $border-base;
   border-radius: $radius;
@@ -37,10 +38,10 @@
     display: grid;
     grid-template: auto auto / 1fr 1.5fr;
     gap: 1rem;
-    margin-top: 1rem;
+    margin-top: 2.5rem;
   }
 
   .footer {
-    margin-top: 1.5rem;
+    margin-top: auto;
   }
 }

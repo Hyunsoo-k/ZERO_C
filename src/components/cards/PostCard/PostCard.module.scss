@@ -1,0 +1,54 @@
+@use "@/styles/variables" as *;
+
+.postCard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: $screen-padding-mobile;
+  border: 1px solid $border-base;
+  border-radius: $radius;
+  background-color: $bg-on-base;
+
+  @include tablet {
+    padding: $screen-padding-tablet;
+  }
+
+  @include desktop {
+    padding: $screen-padding-desktop
+  }
+  
+  .header {
+    margin-bottom: 1rem;
+    
+    .title {
+      overflow: hidden;
+      display: -webkit-box;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    .date {
+      font-size: 0.8rem;
+      color: $text-subtle;
+    }
+  }
+
+  .body {
+    margin-bottom: 1rem;
+
+    .content {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 6;
+    }
+  }
+
+  .footer {
+    display: flex;
+    margin-top: auto;
+  }
+}
