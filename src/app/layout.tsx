@@ -4,6 +4,7 @@ import { Header } from "@/components/layouts/Header/Header";
 import { NavDrawer } from "@/components/layouts/NavDrawer/NavDrawer";
 import { Backdrop } from "@/components/ui/Backdrop/Backdrop";
 import { SearchModal } from "@/components/modals/SearchModal/SearchModal";
+import { PostDetailModal } from "@/components/modals/PostDetailModal/PostDetailModal";
 import { QueryProvider } from "@/components/QueryProvider/QueryProvider";
 
 import localFont from 'next/font/local'
@@ -39,6 +40,7 @@ export default function RootLayout({
           <NavDrawer />
           <Backdrop />
           <SearchModal />
+          <PostDetailModal />
           {children}
         </QueryProvider>
       </body>
