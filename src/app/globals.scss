@@ -40,6 +40,27 @@ body {
     text-decoration: none;
   }
 
+  input {
+    border: none;
+    outline: none;
+    background-color: inherit;
+    font-family: inherit;
+    color: inherit;
+  }
+
+  textarea {
+    // 높이 조절은 handleResizeHeight 함수로 조절하기
+    overflow: hidden;
+    display: block;
+    resize: none;
+    outline: none;
+    border: none;
+    appearance: none;
+    background: none;
+    font-family: inherit;
+    font-size: inherit;
+  }
+
   button {
     border: none;
     background-color: inherit;
