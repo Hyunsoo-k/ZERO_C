@@ -2,10 +2,12 @@
 
 .page {
   width: 100%;
-  min-height: calc(100dvh - #{$header-height-mobile});
+  height: 100%;
+  // min-height: calc(100dvh - #{$header-height-mobile});
 
   @include desktop {
     grid-area: 2 / 2 / 3 / 3;
+    overflow-y: auto;
   }
 
   .main {
