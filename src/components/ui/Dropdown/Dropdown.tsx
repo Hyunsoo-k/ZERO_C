@@ -1,8 +1,10 @@
-import type { MouseEvent } from "react";
-import { useState } from "react";
+"use client";
+
+import type { MouseEvent as ReactMouseEvent } from "react";
+import { useState, useRef, useEffect } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 
-import { CalendarView } from "./components/CalendarView/CalendarView";
+import { Calendar } from "./components/Calendar/Calendar";
 
 import styles from "./Dropdown.module.scss";
 
@@ -13,33 +15,50 @@ const TARGET_MAP = {
 };
 
 type Props = {
-  data: {
-    target: "name" | "year" | "month";
-    list: string[] | undefined;
-  };
+  target: "name" | "year" | "month";
+  items: string[] | undefined;
   disabled: boolean;
   onSelect: (value: string) => void;
 };
 
-export const Dropdown = ({ data, disabled, onSelect }: Props) => {
-  const { target, list } = data;
+export const Dropdown = ({ target, items, disabled, onSelect }: Props) => {
   const [selected, setSelected] = useState<string>(TARGET_MAP[target]);
   const [isListOpen, setIsListOpen] = useState<boolean>(false);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-  const toggleList = (e: MouseEvent<HTMLButtonElement>) => {
+  useEffect(() => {
+    const dropdownEle = dropdownRef.current;
+    if (!dropdownEle) {
+      return;
+    }
+
+    const handleOutstideClick = (e: MouseEvent) => {
+      if (e.target instanceof Node && !dropdownEle.contains(e.target)) {
+        setIsListOpen(false);
+      }
+    };
+
+    window.addEventListener("mousedown", handleOutstideClick);
+
+    return () => {
+      window.removeEventListener("mousedown", handleOutstideClick);
+    }
+  }, [])
+
+  const toggleList = (e: ReactMouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     setIsListOpen((prev) => !prev);
   };
 
-  const handleSelectOption = (e: MouseEvent<HTMLButtonElement>, value: string) => {
+  const handleOptionSelect = (e: ReactMouseEvent<HTMLButtonElement>, item: string) => {
     e.stopPropagation();
-    setSelected(value);
+    setSelected(item);
     setIsListOpen(false);
-    onSelect(value);
+    onSelect(item);
   };
 
   return (
-    <div className={`${styles.dropdown} ${target === "name" ? styles.name : ""}`}>
+    <div ref={dropdownRef} className={`${styles.dropdown} ${target === "name" ? styles.name : ""}`}>
       <button
         type="button"
         disabled={disabled}
@@ -51,11 +70,11 @@ export const Dropdown = ({ data, disabled, onSelect }: Props) => {
       </button>
       <ul className={`${styles.list} ${isListOpen ? styles.open : ""}`}>
         {((target === "name" || target === "year") && isListOpen) && 
-          list?.map((item: string) => (
+          items?.map((item: string) => (
             <li key={item} className={styles.item}>
               <button
                 type="button"
-                onClick={(e) => handleSelectOption(e, item)}
+                onClick={(e) => handleOptionSelect(e, item)}
                 className={styles.option}
               >
                 {item}
@@ -64,8 +83,8 @@ export const Dropdown = ({ data, disabled, onSelect }: Props) => {
           ))
         }
         {(target === "month" && isListOpen) && (
-          <CalendarView
-            list={list}
+          <Calendar
+            items={items}
             onSelect={(value) => {
               setSelected(value);
               setIsListOpen(false);
