@@ -14,7 +14,7 @@
   transition: transform ease-in-out 0.3s;
 
   @include desktop {
-    position: relative;
+    position: stick;
     grid-area: 1 / 1 / 3 / 2;
     transform: none !important;
     transition: none !important;
