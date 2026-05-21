@@ -8,7 +8,16 @@ import { HomeLayout } from "@/components/layouts/HomeLayout/HomeLayout";
 import styles from "./page.module.scss";
 
 export default async function Home() {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 1000 * 60 * 5,
+        gcTime: 1000 * 60 * 10,
+        retry: 1,
+        refetchOnWindowFocus: false,
+      },
+    }
+  });
 
   const companiesQuery = queryClient.prefetchQuery({ 
     queryKey: queryKeys.companies, 
@@ -23,7 +32,7 @@ export default async function Home() {
   await Promise.all([companiesQuery, companyQuery]);
 
   return (
-    <main className={styles.main}>
+    <main className={styles.page}>
       <HydrationBoundary state={dehydrate(queryClient)}>
         <HomeLayout />
       </HydrationBoundary>
