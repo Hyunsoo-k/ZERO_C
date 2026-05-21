@@ -5,6 +5,9 @@
 
 <img width="1461" height="925" alt="image" src="https://github.com/user-attachments/assets/719c683d-aad8-4fff-8c71-fd55af367ea3" />
 
+## 배포 URL
+zero-c-omega.vercel.app
+
 ## 개발 인원
 1인 개발
 
