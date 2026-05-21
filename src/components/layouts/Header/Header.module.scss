@@ -10,7 +10,7 @@
   height: $header-height-mobile;
   padding: 0 $screen-padding-mobile;
   border-bottom: 1px solid $border-base;
-  background-color: $bg-base;
+  background-color: $bg-on-base;
 
   @include tablet {
     position: fixed;

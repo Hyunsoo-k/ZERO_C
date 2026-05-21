@@ -1,0 +1,19 @@
+@use "@/styles/variables" as *;
+
+.button {
+  width: 5.5rem;
+  height: 2.5rem;
+  border: 1px solid $border-base;
+  border-radius: $radius;
+  letter-spacing: 1px;
+  cursor: pointer;
+
+  &:first-child {
+    margin-left: auto;
+  }
+
+  &:hover {
+    background-color: $bg-brand;
+    color: $text-inverse;
+  }
+}

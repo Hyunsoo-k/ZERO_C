@@ -1,16 +1,14 @@
 @use "@/styles/variables" as *;
 
-.searchButton {
-  position: relative;
+.iconButton {
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
   gap: 0.2rem;
   grid-area: 1 / 2 / 2 / 3;
-  width: 6rem;
   height: 2.2rem;
   margin-left: auto;
-  padding-right: 25px;
+  padding: 0 $screen-padding-mobile;
   border-radius: $radius;
   background-color: $bg-brand;
   color: $text-inverse;
@@ -20,17 +18,10 @@
   @include tablet {
     width: 8rem;
     height: 2.6rem;
-    font-size: 0.9rem;
   }
 
   .icon {
-    position: absolute;
-    left: 15px;
+    position: relative;
     font-size: 1.1rem;
-
-    @include tablet {
-      left: 25px;
-      font-size: 1.3rem;
-    }
   }
 }
