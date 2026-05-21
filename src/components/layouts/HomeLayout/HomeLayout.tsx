@@ -1,6 +1,7 @@
 "use client";
 
 import { useGetCompany } from "@/hooks/useGetCompany";
+import { useIdStore } from "@/store/useId";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner/LoadingSpinner";
 import { SearchButton } from "@/components/ui/SearchButton/SearchButton";
 import { TrendCard } from "@/components/cards/TrendCard/TrendCard";
@@ -10,7 +11,8 @@ import { MonthlyEmissionsBySourceChart } from "@/components/charts/MonthlyEmissi
 import styles from "./HomeLayout.module.scss";
 
 export const HomeLayout = () => {
-  const { data: company } = useGetCompany("c1");
+  const { id } = useIdStore();
+  const { data: company } = useGetCompany(id);
 
   if (!company) {
     return <LoadingSpinner />
