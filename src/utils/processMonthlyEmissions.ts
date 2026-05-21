@@ -9,10 +9,19 @@ type MonthlyEmission = {
 
 type MonthlyEmissions = MonthlyEmission[];
 
-export const processMonthlyEmissions = (data: GhgEmission[]): MonthlyEmissions => {
+export const processMonthlyEmissions = (
+  emissionsData: GhgEmission[],
+  year: string,
+  month: string
+): MonthlyEmissions => {
   const monthMap = new Map<string, Map<Source, number>>();
 
-  for (const { yearMonth, source, emissions } of data) {
+  for (const { yearMonth, source, emissions } of emissionsData) {
+    const [emissionYear, emissionMonth] = yearMonth.split("-");
+
+    if (emissionYear !== year) continue;
+    if (emissionMonth > month) continue;
+
     if (!monthMap.has(yearMonth)) {
       monthMap.set(yearMonth, new Map());
     }
@@ -21,7 +30,7 @@ export const processMonthlyEmissions = (data: GhgEmission[]): MonthlyEmissions =
     sourceMap.set(source, (sourceMap.get(source) ?? 0) + emissions);
   }
 
-  return [...monthMap.entries()].map(([month, sourceMap]) => {
+  return [...monthMap.entries()].map(([yearMonth, sourceMap]) => {
     const emissionsBySource = [...sourceMap.entries()].map(([source, emissions]) => ({
       source,
       emissions,
@@ -30,7 +39,7 @@ export const processMonthlyEmissions = (data: GhgEmission[]): MonthlyEmissions =
     const totalEmissions = emissionsBySource.reduce((acc, cur) => acc + cur.emissions, 0);
 
     return {
-      month: month.slice(5),
+      month: yearMonth.slice(5),
       totalEmissions,
       emissionsBySource,
     };
