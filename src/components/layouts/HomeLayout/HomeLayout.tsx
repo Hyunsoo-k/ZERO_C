@@ -1,8 +1,8 @@
 "use client";
 
 import { useGetCompany } from "@/hooks/useGetCompany";
-import { useIdStore } from "@/store/useId";
-import { useSearchModalStore } from "@/store/useSearchModal";
+import { useIdStore } from "@/store/useIdStore";
+import { useSearchYearMonthModalStore } from "@/store/useSearchYearMonthModalStore";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner/LoadingSpinner";
 import { IconButton } from "@/components/ui/buttons/IconButton/IconButton";
 import { TrendCard } from "@/components/cards/TrendCard/TrendCard";
@@ -10,11 +10,12 @@ import { MonthlyTotalEmissionsChart } from "@/components/charts/TotalEmissionsCh
 import { MonthlyEmissionsBySourceChart } from "@/components/charts/MonthlyEmissionsBySourceChart/MonthlyEmissionsBySourceChart";
 
 import styles from "./HomeLayout.module.scss";
+import { SearchYearMonthModal } from "@/components/modals/SearchYearMonthModal/SearchYearMonthModal";
 
 export const HomeLayout = () => {
   const { id } = useIdStore();
   const { data: company } = useGetCompany(id);
-  const { open: openSearchModal } = useSearchModalStore();
+  const { open: openSearchModal } = useSearchYearMonthModalStore();
 
   if (!company) {
     return <LoadingSpinner />
@@ -32,6 +33,7 @@ export const HomeLayout = () => {
           <span className={styles.name}>(회사명: {company.name})</span>
         </h2>
         <p className={styles.description}>월별 탄소 배출 분석</p>
+        <SearchYearMonthModal />
         <IconButton content="검색" iconType="search" onClick={handleSearchClick} />
       </header>
       <section className={styles.cardSecion}>
