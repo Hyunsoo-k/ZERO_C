@@ -1,5 +1,5 @@
 ## ZERO_C
-탄소배출발자국 대시보드 (하나루프 프론트엔드 면접 과제물)
+탄소배출발자국 대시보드 ((주)하나루프 프론트엔드 면접 과제물)
 
 <img width="1902" height="877" alt="스크린샷 2026-05-21 215117" src="https://github.com/user-attachments/assets/1c2e25e5-4f2a-47ab-bc5e-f95cbcf01fb8" />
 
