@@ -3,19 +3,23 @@ import { create } from "zustand";
 import { useBackdropStore } from "./useBackdropStore";
 
 type AlertModalStore = {
-  isOpen: boolean;
-  open: () => void;
+  isOpen: boolean
+  message: string | null;
+  onClick: () => void;
+  open: (message: string, onClick: () => void) => void;
   close: () => void;
 };
 
-export const AlertModalStore = create<AlertModalStore>((set) => ({
+export const useAlertModalStore = create<AlertModalStore>((set) => ({
   isOpen: false,
-  open: () => {
+  message: null,
+  onClick: () => {},
+  open: (message, onClick) => {
     useBackdropStore.getState().open(() => set({ isOpen: false }));
-    set({ isOpen: true });
+    set({ isOpen: true, message, onClick });
   },
   close: () => {
     useBackdropStore.getState().close();
-    set({ isOpen: false });
+    set({ isOpen: false, message: null, onClick: () => {} });
   }
 }));
