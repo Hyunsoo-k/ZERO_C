@@ -2,13 +2,13 @@
 
 import { createPortal } from "react-dom";
 
-import { useAleryModalStore } from "@/store/useAlertModalStore";
+import { useAlertModalStore } from "@/store/useAlertModalStore";
 import { Button } from "@/components/ui/buttons/Button/Button";
 
 import styles from "./AlertModal.module.scss";
 
 export const AlertModal = () => {
-  const { isOpen, message, onClick } = useAleryModalStore();
+  const { isOpen, message, onClick } = useAlertModalStore();
 
   if (!isOpen) {
     return null;
