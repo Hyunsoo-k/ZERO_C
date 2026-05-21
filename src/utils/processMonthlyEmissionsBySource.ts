@@ -6,32 +6,35 @@ type SourceEmission = {
   emissions: number;
 };
 
-type MonthlyEmissionBySource = {
-  month: string;
+type EmissionBySource = {
   sources: SourceEmission[];
   totalEmissions: number;
 };
 
-export const processMonthlyEmissionsBySource = (data: GhgEmission[]): MonthlyEmissionBySource[] => {
-  const monthMap = new Map<string, Map<Source, number>>();
+export const processMonthlyEmissionsBySource = (
+  data: GhgEmission[],
+  year?: string,
+  month?: string
+): EmissionBySource => {
+  const sourceMap = new Map<Source, number>();
 
   for (const { yearMonth, source, emissions } of data) {
-    if (!monthMap.has(yearMonth)) {
-      monthMap.set(yearMonth, new Map());
+    const [itemYear, itemMonth] = yearMonth.split("-");
+    const matchYear = year ? itemYear === year : true;
+    const matchMonth = month ? itemMonth === month : true;
+    if (!matchYear || !matchMonth) {
+      continue;
     }
 
-    const sourceMap = monthMap.get(yearMonth)!;
     sourceMap.set(source, (sourceMap.get(source) ?? 0) + emissions);
   }
 
-  return [...monthMap.entries()].map(([month, sourceMap]) => {
-    const sources = [...sourceMap.entries()].map(([source, emissions]) => ({
-      source,
-      emissions,
-    }));
+  const sources = [...sourceMap.entries()].map(([source, emissions]) => ({
+    source,
+    emissions,
+  }));
 
-    const totalEmissions = sources.reduce((acc, cur) => acc + cur.emissions, 0);
+  const totalEmissions = sources.reduce((acc, cur) => acc + cur.emissions, 0);
 
-    return { month, sources, totalEmissions };
-  });
+  return { sources, totalEmissions };
 };
