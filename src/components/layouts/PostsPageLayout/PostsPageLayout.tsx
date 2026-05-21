@@ -1,12 +1,12 @@
 "use client";
 
 import { Post } from "@/types/post";
-import { useIdStore } from "@/store/useId";
+import { useIdStore } from "@/store/useIdStore";
 import { useGetPosts } from "@/hooks/useGetPosts";
 import { useGetCompany } from "@/hooks/useGetCompany";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner/LoadingSpinner";
+import { IconButton } from "@/components/ui/buttons/IconButton/IconButton";
 import { PostCard } from "@/components/cards/PostCard/PostCard";
-import { SearchButton } from "@/components/ui/SearchButton/SearchButton";
 
 import styles from "./PostPageLayout.module.scss";
 
@@ -18,7 +18,6 @@ export const PostsPageLayout = () => {
   if (!posts || !company) {
     return <LoadingSpinner />
   }
-
   return (
     <div className={styles.postsPageLayout}>
       <header className={styles.header}>
@@ -27,7 +26,6 @@ export const PostsPageLayout = () => {
           <span className={styles.name}>(회사명: {company.name})</span>
         </h2>
         <p className={styles.description}>탄소 배출 분석글</p>
-        <SearchButton />
       </header>
       <section className={styles.postsSection}>
         <ul className={styles.list}>
