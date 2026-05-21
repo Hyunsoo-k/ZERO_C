@@ -33,6 +33,7 @@ npm run dev
 - 서버 데이터과 클라이언트 상태를 zustand와 tanstack-query로 분리 관리
 - scss, css 변수, grid를 이용한 전체적인 레이아웃 구상
 
-## 진척도
-- PUT, PATCH 기능, 낙관적 업데이트 기능 구현
+## 구현하는 중인 기능
+- PUT, PATCH 기능, 낙관적 업데이트 기능
+- 게시글 목록
 - 레이아웃 리팩토링
