@@ -1,1 +1,127 @@
 @use "@/styles/variables" as *;
+
+.postDetailViewer {
+  overflow: hidden;
+  position: fixed;
+  z-index: $search-modal-zindex;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  max-width: 40rem;
+  height: 80%;
+  transform: translate(-50%, -50%);
+  border: 1px solid $border-base;
+  border-radius: $radius;
+  background-color: $bg-on-base;
+
+  .header {
+    margin-bottom: 1rem;
+    padding: $screen-padding-mobile;
+    border-bottom: 1px solid $border-base;
+
+    @include tablet {
+      padding: $screen-padding-tablet;
+    }
+
+    @include desktop {
+      padding: $screen-padding-desktop;
+    }
+
+    .title {
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .date {
+      color: $text-subtle;
+    }
+
+    .titleInput {
+      width: 100%;
+      font-size: 1.17rem;
+      font-weight: 500;
+
+      &::placeholder {
+        font-size: 1.17rem;
+        font-weight: 400;
+        color: $text-subtle;
+      }
+    }
+  }
+
+  .body {
+    overflow-y: auto;
+    flex-grow: 1;
+    padding: $screen-padding-mobile;
+    border-bottom: 1px solid $border-base;
+
+    @include tablet {
+      padding: $screen-padding-tablet;
+    }
+
+    @include desktop {
+      padding: $screen-padding-desktop;
+    }
+
+    .content {
+      flex-grow: 1;
+      width: 100%;
+    }
+
+    .contentInput {
+      width: 100%;
+      min-height: 100%;
+      font-size: 1rem;
+      font-weight: 400;
+
+      &::placeholder {
+        font-size: 1rem;
+        font-weight: 400;
+        color: $text-subtle;
+      }
+    }
+  }
+
+  .footer {
+    display: flex;
+    gap: 1rem;
+    height: 4rem;
+    padding: $screen-padding-mobile;
+
+    @include tablet {
+      padding: $screen-padding-tablet;
+    }
+
+    @include desktop {
+      padding: $screen-padding-desktop;
+    }
+
+    .button {
+      width: 5.5rem;
+      height: 2.5rem;
+      border: 1px solid $border-base;
+      border-radius: $radius;
+      letter-spacing: 1px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $bg-brand;
+        color: $text-inverse;
+      }
+
+      &.edit {
+        margin-left: auto;
+      }
+
+      &.delete {
+
+      }
+    }
+
+    @include tablet {
+      height: 5rem;
+    }
+  }
+}
