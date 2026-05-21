@@ -4,45 +4,51 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 
 import { Company } from "@/types/company";
-import { groupCompanyCalendar } from "@/utils/groupCompanyCalendar";
+import { processCalendar } from "@/utils/processCalendar";
 import { useSearchModalStore } from "@/store/useSearchModal";
+import { useDateStore } from "@/store/useDateStore";
+import { useIdStore } from "@/store/useId";
 import { useGetCompanies } from "@/hooks/useGetCompanies";
 import { useGetCompany } from "@/hooks/useGetCompany";
 import { Dropdown } from "@/components/ui/Dropdown/Dropdown";
 import { SubmitButton } from "@/components/ui/SubmitButton/SubmitButton";
 
 import styles from "./SearchModal.module.scss";
-import { useDateStore } from "@/store/useDateStore";
-import { useIdStore } from "@/store/useId";
 
 export const SearchModal = () => {
   const { isOpen, close } = useSearchModalStore();
   const { setDate } = useDateStore();
-  const { data: companies } = useGetCompanies();
   const { id, setId } = useIdStore();
+  const { data: companies } = useGetCompanies();
+  useGetCompany(id);
   const [name, setName] = useState<string | null>(null);
   const [year, setYear] = useState<string | null>(null);
   const [month, setMonth] = useState<string | null>(null);
-  const company = useGetCompany(id);
-
-  useGetCompany(id);
 
   const names = companies?.map((company: Company) => company.name) || [];
   const date = name
     ? companies?.find((company: Company) => company.name === name)
     : null;
-  const calendar = date 
-    ? groupCompanyCalendar(date)
-    : []
+  const calendar = date ? processCalendar(date) : []
   const years = calendar.map((calendar: { year: string, months: string[]}) => calendar.year);
   const months = calendar.find((calendar: { year: string, months: string[] }) => 
     calendar.year === year
   )?.months ?? [];
 
+  const handleNameSelect = (name: string) => {
+    setName(name);
+    setYear(null);
+    setMonth(null);
+  };
+
   const handleSubmit = () => {
     if (year && month) {
       setDate({ year, month });
-      setId(companies?.find((company: Company) => company.name === name).id ?? null);
+
+      if (companies) {
+        setId(companies.find((company: Company) => company.name === name).id ?? null);
+      }
+      
       close();
     }
   };
@@ -59,21 +65,20 @@ export const SearchModal = () => {
       </header>
       <div className={styles.body}>
         <Dropdown
-          data={{ target: "name", list: names }}
+          target="name"
+          items={names}
           disabled={!companies}
-          onSelect={(value) => {
-            setName(value);
-            setYear(null);
-            setMonth(null);
-          }}
+          onSelect={handleNameSelect}
         />
         <Dropdown
-          data={{ target: "year", list: years }}
+          target="year"
+          items={years}
           disabled={!name}
           onSelect={setYear}
         />
         <Dropdown
-          data={{ target: "month", list: months }}
+          target="month"
+          items={months}
           disabled={!year}
           onSelect={setMonth}
         />
