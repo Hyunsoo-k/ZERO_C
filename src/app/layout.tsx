@@ -26,6 +26,11 @@ const pretendard = localFont({
 export const metadata: Metadata = {
   title: "ZERO_C",
   description: "탄소배출발자국 대시보드",
+  icons: {
+    icon: "/images/favicon.ico",
+    shortcut: "/images/favicon-32x32.png",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({

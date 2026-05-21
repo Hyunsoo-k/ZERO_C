@@ -1,4 +1,4 @@
-import { Source } from "./source";
+import type { Source } from "./source";
 
 type MonthlyEmission = {
   source: Source;
