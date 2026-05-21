@@ -2,11 +2,11 @@ import { CiFaceSmile } from "react-icons/ci";
 import { CiFaceMeh } from "react-icons/ci";
 import { CiFaceFrown } from "react-icons/ci";
 
+import { Company } from "@/types/company";
 import { calcMonthDiff } from "@/utils/calcMonthDiff";
 import { calcEvaluation } from "@/utils/calcEvaluation";
 import { processMonthlyEmissions } from "@/utils/processMonthlyEmissions";
-import { useSelectedCompanyStore } from "@/store/useSelectedCompanyStore";
-import { useSelectedDateStore } from "@/store/useSelectedDateStore";
+import { useDateStore } from "@/store/useDateStore";
 
 import styles from "./TrendCard.module.scss";
 
@@ -30,14 +30,14 @@ const ICON_MAP = {
 
 type Props = {
   subject: "totalMonthlyEmissions" | "monthDiff" | "evaluation";
+  company: Company;
 };
 
-export const TrendCard = ({ subject }: Props) => {
-  const { selectedCompany } = useSelectedCompanyStore();
-  const { selectedDate } = useSelectedDateStore();
-  const monthlyEmissions = processMonthlyEmissions(selectedCompany.emissions);
-  const totalEmissions = monthlyEmissions.find((item) => item.month === selectedDate.month)?.totalEmissions;
-  const monthDiff = calcMonthDiff(monthlyEmissions, selectedDate.month);
+export const TrendCard = ({ subject, company }: Props) => {
+  const { date } = useDateStore();
+  const monthlyEmissions = processMonthlyEmissions(company.emissions);
+  const totalEmissions = monthlyEmissions.find((item) => item.month === date.month)?.totalEmissions;
+  const monthDiff = calcMonthDiff(monthlyEmissions, date.month);
   const evaluation = calcEvaluation(monthDiff);
 
   return (

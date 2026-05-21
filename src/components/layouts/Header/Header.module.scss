@@ -13,11 +13,13 @@
   background-color: $bg-base;
 
   @include tablet {
+    position: fixed;
     height: $header-height-tablet;
     padding: 0 $screen-padding-tablet;
   }
 
   @include desktop {
+    position: sticky;
     width: 100%;
     grid-area: 1 / 2 / 2 / 3;
   }

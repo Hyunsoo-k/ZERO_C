@@ -1,4 +1,4 @@
-import { Company } from "@/lib/types";
+import type { Company } from "@/types/company";
 
 export const groupCompanyCalendar = (company: Company) => {
   const years = [...new Set(company.emissions.map(e => e.yearMonth.split('-')[0]))].sort();

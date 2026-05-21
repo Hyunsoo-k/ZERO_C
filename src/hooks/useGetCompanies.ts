@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query"
 
-import { fetchCompanies } from "@/lib/api"
+import { getCompanies } from "@/lib/api/getCompanies";
+import { queryKeys } from "@/queryKeys/queryKeys";
 
 export const useGetCompanies = () => {
   return useQuery({
-    queryKey: ["companies"],
-    queryFn: fetchCompanies
+    queryKey: queryKeys.companies,
+    queryFn: getCompanies
   });
 };

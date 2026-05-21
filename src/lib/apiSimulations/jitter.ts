@@ -1,0 +1,1 @@
+export const jitter = () => 200 + Math.random() * 600;

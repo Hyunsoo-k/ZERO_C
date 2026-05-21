@@ -1,10 +1,8 @@
-import { Company, Post } from "./types";
-
-export const countries: string[] = ["US", "DE", "JP", "CH", "IN"];
+import { Company } from "@/types/company";
 
 export const companies: Company[] = [
   {
-    id: "c2",
+    id: "c1",
     name: "Globex",
     country: "DE",
     emissions: [
@@ -95,7 +93,7 @@ export const companies: Company[] = [
     ]
   },
   {
-    id: "c3",
+    id: "c2",
     name: "Initech",
     country: "JP",
     emissions: [
@@ -177,7 +175,7 @@ export const companies: Company[] = [
     ]
   },
   {
-    id: "c4",
+    id: "c3",
     name: "Umbrella",
     country: "CH",
     emissions: [
@@ -285,7 +283,7 @@ export const companies: Company[] = [
     ]
   },
   {
-    id: "c5",
+    id: "c4",
     name: "Stark Industries",
     country: "IN",
     emissions: [
@@ -383,14 +381,4 @@ export const companies: Company[] = [
       { yearMonth: "2026-05", source: "co2", emissions: 76 },
     ]
   },
-];
-
-export const posts: Post[] = [
-  {
-    id: "p1",
-    title: "Sustainability Report",
-    resourceUid: "c1",
-    dateTime: "2024-02",
-    content: "Quarterly CO2 update"
-  }
 ];

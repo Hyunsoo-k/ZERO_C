@@ -1,0 +1,1 @@
+export const maybeFail = () => Math.random() < 0.15;
