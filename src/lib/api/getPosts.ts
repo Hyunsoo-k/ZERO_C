@@ -6,6 +6,7 @@ import { posts } from "../db/posts";
 export const getPosts = async(id: string) => {
   await delay(jitter());
 
-  const myPosts = posts.find((post: Post) => post.id === id);
+  const myPosts = posts.filter((post: Post) => post.resourceUid === id);
+  console.log(myPosts)
   return myPosts;
 };
