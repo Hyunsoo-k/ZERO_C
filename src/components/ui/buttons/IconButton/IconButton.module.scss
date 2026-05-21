@@ -1,0 +1,27 @@
+@use "@/styles/variables" as *;
+
+.iconButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.2rem;
+  grid-area: 1 / 2 / 2 / 3;
+  height: 2.2rem;
+  margin-left: auto;
+  padding: 0 $screen-padding-mobile;
+  border-radius: $radius;
+  background-color: $bg-brand;
+  color: $text-inverse;
+  letter-spacing: 1px;
+  cursor: pointer;
+
+  @include tablet {
+    width: 8rem;
+    height: 2.6rem;
+  }
+
+  .icon {
+    position: relative;
+    font-size: 1.1rem;
+  }
+}
