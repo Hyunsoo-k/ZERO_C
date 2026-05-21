@@ -26,11 +26,15 @@ export const SearchCompanyModal = () => {
   };
 
   const handleSubmit = () => {
-    if (!name) {
+    if (!name || !companies) {
       return;
     }
 
-    setId(companies.find((company: Company) => company.name === name).id ?? null);
+    const found = companies.find((company: Company) => company.name === name);
+    if (!found || !found.id) {
+      return;
+    }
+    setId(found.id);
     close();
   }
   
