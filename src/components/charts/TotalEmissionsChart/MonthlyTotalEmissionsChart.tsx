@@ -12,6 +12,7 @@ import {
 
 import { GhgEmission } from "@/types/ghgEmission";
 import { processMonthlyEmissions } from "@/utils/processMonthlyEmissions";
+import { useDateStore } from "@/store/useDateStore";
 
 import styles from "./MonthlyTotalEmissionsChart.module.scss";
 
@@ -22,13 +23,13 @@ type Props = {
 };
 
 export const MonthlyTotalEmissionsChart = ({ emissions }: Props) => {
-  if (!emissions) {
+  const { date } = useDateStore();
+
+  if (!emissions || !date) {
     return null;
   }
-
-  const groupedEmissions = processMonthlyEmissions(emissions);
-
-  const chartData = groupedEmissions.map((item) => ({
+  const monthlyEmissions = processMonthlyEmissions(emissions, date.year, date.month);
+  const chartData = monthlyEmissions.map((item) => ({
     month: item.month,
     totalEmissions: item.totalEmissions,
   }));
@@ -37,7 +38,7 @@ export const MonthlyTotalEmissionsChart = ({ emissions }: Props) => {
     <article className={styles.monthlyTotalEmissionsChart}>
       <header className={styles.header}>
         <h3 className={styles.title}>월별 총 탄소 배출 추이</h3>
-        <p className={styles.description}>2025년 전체 (tCO₂e)</p>
+        <p className={styles.description}>{date.year}년 전체 (tCO₂e)</p>
       </header>
       <div className={styles.chartWrapper}>
         <ResponsiveContainer width="100%" height="100%">

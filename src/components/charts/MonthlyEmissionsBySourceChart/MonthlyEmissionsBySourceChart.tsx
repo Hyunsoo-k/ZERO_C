@@ -13,6 +13,7 @@ import {
 
 import type { GhgEmission } from "@/types/ghgEmission";
 import { processMonthlyEmissionsBySource } from "@/utils/processMonthlyEmissionsBySource";
+import { useDateStore } from "@/store/useDateStore";
 
 import styles from "./MonthlyEmissionsBySourceChart.module.scss";
 
@@ -29,14 +30,15 @@ type Props = {
 };
 
 export const MonthlyEmissionsBySourceChart = ({ emissions }: Props) => {
-  const monthlyEmissionsBySource = processMonthlyEmissionsBySource(emissions);
-  const chartData = monthlyEmissionsBySource[0].sources;
+  const { date } = useDateStore();
+  const monthlyEmissionsBySource = processMonthlyEmissionsBySource(emissions, date.year, date.month);
+  const chartData = monthlyEmissionsBySource.sources;
 
   return (
     <article data-testid="monthly-emissions-chart" className={styles.monthlyEmissionsBySourceChart}>
       <header className={styles.header}>
         <h3 className={styles.title}>자원별 월 총 탄소 배출량</h3>
-        <p className={styles.description}>2025년 전체 (tCO₂e)</p>
+        <p className={styles.description}>{date.year}년 {date.month}월 (tCO₂e)</p>
       </header>
       <div className={styles.chartWrapper}>
         <ResponsiveContainer width="100%" height="100%">
