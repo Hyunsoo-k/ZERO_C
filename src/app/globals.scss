@@ -8,18 +8,18 @@
 
 
 html {
+  overflow: hidden;
   height: 100%;
 }
 
 html,
 body {
-  overflow-x: hidden;
+  overflow: hidden;
   font-family: var(--font-pretendard), sans-serif;
 }
 
 body {
   position: relative;
-  min-height: 100%;
   background-color: $bg-base;
 
   @include tablet {
