@@ -2,8 +2,9 @@
 
 import { useGetCompany } from "@/hooks/useGetCompany";
 import { useIdStore } from "@/store/useId";
+import { useSearchModalStore } from "@/store/useSearchModal";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner/LoadingSpinner";
-import { SearchButton } from "@/components/ui/SearchButton/SearchButton";
+import { IconButton } from "@/components/ui/buttons/IconButton/IconButton";
 import { TrendCard } from "@/components/cards/TrendCard/TrendCard";
 import { MonthlyTotalEmissionsChart } from "@/components/charts/TotalEmissionsChart/MonthlyTotalEmissionsChart";
 import { MonthlyEmissionsBySourceChart } from "@/components/charts/MonthlyEmissionsBySourceChart/MonthlyEmissionsBySourceChart";
@@ -13,10 +14,15 @@ import styles from "./HomeLayout.module.scss";
 export const HomeLayout = () => {
   const { id } = useIdStore();
   const { data: company } = useGetCompany(id);
+  const { open: openSearchModal } = useSearchModalStore();
 
   if (!company) {
     return <LoadingSpinner />
   }
+
+  const handleSearchClick = () => {
+    openSearchModal();
+  };
 
   return (
     <div className={styles.homeLayout}>
@@ -26,7 +32,7 @@ export const HomeLayout = () => {
           <span className={styles.name}>(회사명: {company.name})</span>
         </h2>
         <p className={styles.description}>월별 탄소 배출 분석</p>
-        <SearchButton />
+        <IconButton content="검색" iconType="search" onClick={handleSearchClick} />
       </header>
       <section className={styles.cardSecion}>
         <TrendCard subject="totalMonthlyEmissions" company={company} />
