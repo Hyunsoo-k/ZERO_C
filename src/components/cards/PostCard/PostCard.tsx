@@ -1,16 +1,20 @@
 import { Post } from "@/types/post";
 
+import { usePostDetailStore } from "@/store/usePostDetailStore";
+
 import styles from "./PostCard.module.scss";
+import { Button } from "@/components/ui/buttons/Button/Button";
 
 type Props = {
   post: Post
 };
 
 export const PostCard = ({ post }: Props) => {
+  const { open: openPostDetail } = usePostDetailStore();
   const { title, content, dateTime } = post;
 
   const handleButtonClick = () => {
-
+    openPostDetail(post, "viewer");
   };
 
   return (
@@ -23,13 +27,7 @@ export const PostCard = ({ post }: Props) => {
         <p className={styles.content}>{content}</p>
       </div>
       <footer className={styles.footer}>
-        <button
-          type="button"
-          onClick={handleButtonClick}
-          className={styles.openButton}
-        >
-          열기
-        </button>
+        <Button content="열기" onClick={handleButtonClick} />
       </footer>
     </article>
   );
