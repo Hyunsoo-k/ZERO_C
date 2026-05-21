@@ -1,5 +1,5 @@
 import type { GhgEmission } from "@/types/ghgEmission";
-import type { Source } from "@/types/Source";
+import type { Source } from "@/types/source";
 
 type SourceEmission = {
   source: Source;
