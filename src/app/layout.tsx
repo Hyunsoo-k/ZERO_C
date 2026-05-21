@@ -3,8 +3,9 @@ import type { Metadata } from "next";
 import { Header } from "@/components/layouts/Header/Header";
 import { NavDrawer } from "@/components/layouts/NavDrawer/NavDrawer";
 import { Backdrop } from "@/components/ui/Backdrop/Backdrop";
-import { SearchModal } from "@/components/modals/SearchModal/SearchModal";
 import { PostDetailModal } from "@/components/modals/PostDetailModal/PostDetailModal";
+import { AlertModal } from "@/components/modals/AlertModal/AlertModal";
+import { SearchCompanyModal } from "@/components/modals/SearchCompanyModal/SearchCompanyModal";
 import { QueryProvider } from "@/components/QueryProvider/QueryProvider";
 
 import localFont from 'next/font/local'
@@ -39,7 +40,8 @@ export default function RootLayout({
           <Header />
           <NavDrawer />
           <Backdrop />
-          <SearchModal />
+          <SearchCompanyModal />
+          <AlertModal />
           <PostDetailModal />
           {children}
         </QueryProvider>
