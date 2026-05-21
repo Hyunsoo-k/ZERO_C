@@ -34,10 +34,11 @@ type Props = {
 };
 
 export const TrendCard = ({ subject, company }: Props) => {
+  console.log(company)
   const { date } = useDateStore();
-  const monthlyEmissions = processMonthlyEmissions(company.emissions);
+  const monthlyEmissions = processMonthlyEmissions(company.emissions, date.year, date.month);
   const totalEmissions = monthlyEmissions.find((item) => item.month === date.month)?.totalEmissions;
-  const monthDiff = calcMonthDiff(monthlyEmissions, date.month);
+  const monthDiff = calcMonthDiff(company.emissions, date.year, date.month);
   const evaluation = calcEvaluation(monthDiff);
 
   return (
