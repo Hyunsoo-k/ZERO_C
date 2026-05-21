@@ -1,4 +1,4 @@
-import type { Source } from "@/types/Source";
+import type { Source } from "@/types/source";
 import type { GhgEmission } from "@/types/ghgEmission";
 
 type MonthlyEmission = {
